@@ -16,6 +16,7 @@ import type {
 } from "@excalidraw/excalidraw/types";
 
 import { LanguagePicker } from "./LanguagePicker";
+import { attachDebranding } from "./debrand";
 import brandLogo from "./assets/brand-logo.svg";
 import {
   flushSceneSave,
@@ -218,6 +219,12 @@ export default function App() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
+
+  // Rewrite third-party branding that the editor renders internally (see
+  // debrand.ts): library section heading, mermaid tool name, help dialog
+  // links. Observed from the body so the dialog portal container is covered
+  // too; re-applied on every re-render via a MutationObserver.
+  useEffect(() => attachDebranding(document.body), []);
 
   const handleExcalidrawApi = useCallback((instance: ExcalidrawImperativeAPI) => {
     apiRef.current = instance;
