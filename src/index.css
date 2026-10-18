@@ -1,0 +1,54 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.whiteboard-root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Language selector inside the main menu (Preferences row) */
+.language-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem 0.6rem;
+}
+
+.language-picker__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary-color, #1b1b1f);
+}
+
+.language-picker__select {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--dialog-border-color, rgba(0, 0, 0, 0.2));
+  background-color: var(--island-bg-color, #ffffff);
+  color: var(--text-primary-color, #1b1b1f);
+  font-size: 0.85rem;
+}
+
+html[data-theme="dark"] .language-picker__select {
+  background-color: var(--island-bg-color, #232329);
+  border-color: var(--dialog-border-color, rgba(255, 255, 255, 0.2));
+}
+
+/* Matches the boot script in index.html so there is no flash between the
+   HTML paint and the editor mounting. */
+html[data-theme="light"] {
+  background-color: #ffffff;
+}
+
+html[data-theme="dark"] {
+  background-color: #121212;
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="description"
+      content="Sachin's Whiteboard — a hand-drawn style virtual whiteboard that runs entirely in your browser."
+    />
+    <meta property="og:title" content="Sachin's Whiteboard" />
+    <meta
+      property="og:description"
+      content="A hand-drawn style virtual whiteboard that runs entirely in your browser."
+    />
+    <title>Sachin's Whiteboard</title>
+    <script>
+      // Pick the theme before first paint to avoid a flash.
+      (function () {
+        var theme = "light";
+        try {
+          var stored = localStorage.getItem("whiteboard:theme");
+          if (stored === "light" || stored === "dark") {
+            theme = stored;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            theme = "dark";
+          }
+        } catch (error) {
+          /* ignore */
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
